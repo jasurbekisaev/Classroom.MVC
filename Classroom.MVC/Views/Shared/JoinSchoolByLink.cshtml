@@ -1,0 +1,16 @@
+﻿@using Classroom.MVC.Helpers
+@model ClassRoomData.Entities.School
+@inject UserProvider UserProvider
+
+@{
+    var userId = UserProvider.UserId;
+    bool IsUserExistsinschool = Model.UserSchools!.Any(u => u.User.Id == userId);
+    if (!IsUserExistsinschool)
+    {
+        <a class="btn btn-primary" asp-action ="JoinSchool" asp-route-id="@Model.Id"> Join School </a>
+    }
+    else
+    {
+        <h3 class = "btn btn-primary"> Joined</h3>
+    }
+}

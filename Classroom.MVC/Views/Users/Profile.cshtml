@@ -1,0 +1,90 @@
+﻿@using Microsoft.EntityFrameworkCore
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using ClassRoomData.Context
+@model ClassRoomData.Entities.User
+@inject AppDbContext DbContext
+@using Classroom.MVC.Helpers
+@inject UserProvider UserProvider
+
+@{
+    ViewData["Title"] = "Profile";
+}
+
+@*<h1>Profile</h1>
+<h1>Firstname: @Model.Firstname</h1>
+<h1>Firstname: @Model.Lastname</h1>
+<h1>UserName: @Model.UserName</h1>*@
+
+<div class="d-flex justify-content-center" style="flex-wrap:wrap">
+
+    <div class=" row g-1 col-md-4" style="border-radius: 10px;
+    margin-top: 1rem;
+    padding: 3rem;
+    box-shadow: 0 0rem 3rem rgba(99, 0, 0, 0.8)!important;">
+        <div class="card-body" style="width: 3%">
+            <div class="center">
+                <div class="nima text-center">
+                    <img class="rounded-circle shadow-lg d-flex justify-content-center" width="195" height="195" src="@Model.PhotoUrl" style="margin-left: 15px;"> <!-- added margin-left to move image to the right -->
+                </div>
+                <div class="text-center">
+                    <h1>Firstname: <span style="color:red">@Model.FirstName</span></h1>
+                    <h1>Username: <span style="color:red">@Model.UserName</span></h1>
+                </div>
+            </div>
+            <br />
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-danger" asp-controller="Users" asp-action="Logout">Log Out</a>
+                <a class="btn btn-danger" asp-controller="Users" asp-action="UpdateUser" asp-route-id="@UserProvider.UserId">Update</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<br>
+
+<h1 style="align-content:center">Join science requests</h1>
+ 
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Request</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var joinRequests = await DbContext.JoinScienceRequests
+            .Where(r => r.ToUserId == Model.Id && r.IsJoined == false)
+            .Include(r => r.Science)
+            .Include(r => r.FromUser)
+            .ToListAsync();
+
+        for (var i = 0; i < joinRequests.Count; i++)
+        {
+            var joinRequest = joinRequests[i];
+
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                    <td><strong>@joinRequest.FromUser.UserName</strong> requested to join <strong>@joinRequest.Science.Name</strong></td>
+                <td>
+                    <a class="btn btn-primary" 
+                       asp-controller="Sciences" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="true"
+                       asp-route-joinRequestId="@joinRequest.Id">Join</a>
+
+                    <a class="btn btn-primary" 
+                       asp-controller="Sciences" 
+                       asp-action="JoinScience"
+                       asp-route-isJoin="false"
+                       asp-route-joinRequestId="@joinRequest.Id">Reject</a>
+                </td>
+            </tr>
+        }
+    }
+    </tbody>
+</table>

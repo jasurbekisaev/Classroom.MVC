@@ -1,0 +1,27 @@
+﻿@model CreateTaskDto
+
+<h1 style="margin: auto; text-align: center">Add Task</h1>
+<form class="row g-3" style="width: 400px; margin: auto" asp-controller="Tasks" 
+      asp-action="CreateSciencetask" asp-route-scienceId="@ViewBag.ScienceId" method="post">
+    <div>
+        <input name="Title" class="form-control" asp-for="Title" placeholder="Title" type="text" />
+        <span class="text-danger" asp-validation-for="Title"></span>
+    </div>
+    <div>
+        <input name="Description" class="form-control" asp-for="Description" placeholder="Description" type="text" />
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+    <div>
+        <input name="StartDate" class="form-control" asp-for="StartDate" placeholder="Start date" type="date" />
+        <span class="text-danger" asp-validation-for="StartDate"></span>
+    </div>
+    <div>
+        <input name="EndDate" class="form-control" asp-for="EndDate" placeholder="End date" type="date" />
+        <span class="text-danger" asp-validation-for="EndDate"></span>
+    </div>
+    <div>
+        <input name="MaxBall" class="form-control" asp-for="MaxBall" placeholder="Max ball" type="text" />
+        <span class="text-danger" asp-validation-for="MaxBall"></span>
+    </div>
+    <button class="form-control" type="submit">Add</button>
+</form>

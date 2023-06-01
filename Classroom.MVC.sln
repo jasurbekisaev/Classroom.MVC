@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Classroom.MVC", "Classroom.MVC\Classroom.MVC.csproj", "{FB2E35F1-C6DC-407A-BBE0-55D0AEE60C80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassRoomData", "ClassRoomData\ClassRoomData.csproj", "{421612BC-9776-47EF-9372-2819E7ADACD9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB2E35F1-C6DC-407A-BBE0-55D0AEE60C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB2E35F1-C6DC-407A-BBE0-55D0AEE60C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB2E35F1-C6DC-407A-BBE0-55D0AEE60C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB2E35F1-C6DC-407A-BBE0-55D0AEE60C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{421612BC-9776-47EF-9372-2819E7ADACD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{421612BC-9776-47EF-9372-2819E7ADACD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{421612BC-9776-47EF-9372-2819E7ADACD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{421612BC-9776-47EF-9372-2819E7ADACD9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {09E06BAD-8AFD-4F43-8AF0-F0773136C578}
+	EndGlobalSection
+EndGlobal

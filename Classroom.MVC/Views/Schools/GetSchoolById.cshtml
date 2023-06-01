@@ -1,0 +1,64 @@
+﻿@using ClassRoomData.Entities
+@using Classroom.MVC.Helpers
+@model ClassRoomData.Entities.School
+@inject UserProvider UserProvider
+
+<h2> Name : @Model.Name</h2>
+<h2> Description : @Model.Description</h2>
+<h2> Founder : @Model.UserSchools!.First(user => user.Type == EUserSchool.Founder).User.FirstName</h2>
+
+<partial name="JoinSchoolByLink" />
+<partial name="UpdateSchoolByLink" />
+<a class="btn btn-primary" asp-area="" asp-controller="Sciences" asp-action="Index" asp-route-schoolId="@Model.Id">Sciences</a>
+
+<h1>Users</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">Username</th>
+        <th scope="col">Role</th>
+    </tr>
+    </thead>
+    <tbody>
+    @{
+        var user = Model.UserSchools?.FirstOrDefault(u => u.UserId == UserProvider.UserId);
+        for (var i = 0; i < Model.UserSchools!.Count; i++)
+        {
+            var userSchool = Model.UserSchools[i];
+
+            <tr>
+                <th scope="row">@(i + 1)</th>
+                <td>@userSchool.User.FirstName</td>
+                <td>@userSchool.User.UserName</td>
+            
+                @{
+                    if (userSchool.UserId != UserProvider.UserId && userSchool.Type != EUserSchool.Founder &&
+                        (user?.Type == EUserSchool.Admin || user?.Type == EUserSchool.Founder))
+                    {
+                        <td>
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @userSchool.Type
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" asp-controller="Schools" asp-action="UpdateUserRole" asp-route-userId="@userSchool.UserId" asp-route-schoolId="@Model.Id" asp-route-role="@EUserSchool.Admin">Admin</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Schools" asp-action="UpdateUserRole" asp-route-userId="@userSchool.UserId" asp-route-schoolId="@Model.Id" asp-route-role="@EUserSchool.Teacher">Teacher</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Schools" asp-action="UpdateUserRole" asp-route-userId="@userSchool.UserId" asp-route-schoolId="@Model.Id" asp-route-role="@EUserSchool.student">Student</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </td>
+                    }
+                    else
+                    {
+                        <td>@userSchool.Type</td>
+                    }
+                }
+            </tr>
+        }
+    }
+    </tbody>
+</table>

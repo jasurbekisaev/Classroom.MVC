@@ -1,0 +1,47 @@
+﻿ @model CreateUserDto
+
+ 
+    <div class="loginBox" style="margin :auto ; text-align : center ">
+    <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" style="margin :auto ; text-align : center " height="100px" width="100px" >
+    <h3 style="color:yellow ; margin :auto ; text-align : center ">Sign Up Here</h3>
+    <form class="row g-3" style="width: 400px ; margin :auto ; text-align : center " asp-controller="Users" asp-action="SignUp"  enctype = "multipart/form-data" method="post">
+    
+    <div >
+        <input name="FirstName" class="form-control" asp-for="FirstName"  type="text" placeholder="FirstName"/>
+        <span class="text-danger" asp-validation-for="FirstName"> </span>
+    </div>
+
+    <div >
+        <input name="UserName" class="form-control" asp-for="UserName"  type="text" placeholder="UserName"/>
+        <span class="text-danger" asp-validation-for="UserName"> </span>
+    </div>
+
+    <div >
+        <input name="Email" class="form-control" asp-for="Email" type="text" placeholder="Email"/>
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+    <div >
+        <input name="PhoneNumber" class="form-control" asp-for="PhoneNumber" type="text" placeholder="PhoneNumber (90 000 00 00)"/>
+        <span class="text-danger" asp-validation-for="PhoneNumber"></span>
+    </div>
+
+    <div >
+        <input name="Age" class="form-control" asp-for="Age" type="number" placeholder="Age"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+
+    <div >
+        <input name="Password" class="form-control" asp-for="Password" type="text" placeholder="Password"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+
+    <div >
+        <input name="Photo" class="form-control" asp-for="Photo" type="file" placeholder="Photo"/>
+        <span class="text-danger" asp-validation-for="Photo"></span>
+    </div>
+
+    <button class="form-control"  type="submit">Sign Up</button>
+    <a class="btn btn-primary text-info" asp-controller="Users" asp-action="SignIn">Sign In</a>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+﻿@model CreateUserDto
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+    <div class="loginBox" style="margin :auto ; text-align : center ">
+    <img class="user" src="https://i.ibb.co/yVGxFPR/2.png" style="margin :auto ; text-align : center " height="100px" width="100px" >
+    <h3 style="color:yellow ; margin :auto ; text-align : center ">Sign In Here</h3>
+    <form class="row g-3" style="width: 400px ; margin :auto ; text-align : center " asp-controller="Users" asp-action="SignIn"   enctype = "multipart/form-data" method="post">
+
+    <div >
+        <input name="UserName" class="form-control" asp-for="UserName"  type="text" placeholder="UserName"/>
+        <span class="text-danger" asp-validation-for="UserName"> </span>
+    </div>
+
+    <div >
+        <input name="Email" class="form-control" asp-for="Email" type="text" placeholder="Email"/>
+        <span class="text-danger" asp-validation-for="Email"></span>
+    </div>
+
+    <div >
+        <input name="Password" class="form-control" asp-for="Password" type="text" placeholder="Password"/>
+        <span class="text-danger" asp-validation-for="Password"></span>
+    </div>
+
+    <button class="form-control"  type="submit">Sign In</button>
+    <a class="btn btn-primary text-info" asp-controller="Users" asp-action="SignUp">Sign Up</a>
+    </form>
+</div>

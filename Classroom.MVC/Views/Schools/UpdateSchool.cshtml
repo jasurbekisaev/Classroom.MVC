@@ -1,0 +1,26 @@
+﻿@model UpdateSchoolDto
+
+
+
+<div class="loginBox" style="margin :auto ; text-align : center ">
+    <h3 style="color: blue ; margin :auto ; text-align : center ">Update School Here</h3>
+    <form class="row g-3" style="width: 400px ; margin :auto ; text-align : center " asp-controller="Schools" asp-action="UpdateSchool" asp-route-id="@ViewBag.Id" method="post" enctype = "multipart/form-data">
+
+        <div >
+            <input name="Name" class="form-control" asp-for="Name"  type="text" placeholder="Name"/>
+            <span class="text-danger" asp-validation-for="Name"> </span>
+        </div>
+
+        <div >
+            <input name="Description" class="form-control" asp-for="Description"  type="text" placeholder="Description"/>
+            <span class="text-danger" asp-validation-for="Description"> </span>
+        </div>
+
+        <div >
+            <input name="LogoPhoto" class="form-control" asp-for="LogoPhoto" type="file" placeholder="School Logo"/>
+            <span class="text-danger" asp-validation-for="LogoPhoto"></span>
+        </div>
+
+        <button class="btn btn-primary form-control"  type="submit" >Update school</button>
+    </form>
+</div>

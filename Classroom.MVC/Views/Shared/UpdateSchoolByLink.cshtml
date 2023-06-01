@@ -1,0 +1,12 @@
+﻿@using  Classroom.MVC.Helpers
+@using ClassRoomData.Entities
+@model ClassRoomData.Entities.School
+@inject UserProvider  UserProvider 
+
+
+@{
+    if(Model.UserSchools.Any( u=> u.User.Id == UserProvider.UserId && (u.Type == EUserSchool.Founder || u.Type == EUserSchool.Admin)))
+    {
+        <a class = "btn btn-primary" asp-controller="Schools" asp-action="UpdateSchool" asp-route-id="@Model.Id">Update School</a>
+    }
+}

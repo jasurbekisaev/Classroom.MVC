@@ -1,0 +1,25 @@
+﻿@model List<ClassRoomData.Entities.School>
+
+<h1> schools </h1>
+<table class="table">
+    <thread>
+        <tr> 
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Users</th>
+        </tr>
+    </thread>
+    <tbody>
+    @for(var i = 0 ; i < Model.Count ; i++)
+    {
+        var school = Model[i];
+        <tr>
+            <th scope="col">@(i+1)</th>
+            <td >@school.Name</td>
+            <td >@school.Description</td>
+            <td >@school.UserSchools?.Count</td>
+        </tr>
+    }
+    </tbody>
+</table>

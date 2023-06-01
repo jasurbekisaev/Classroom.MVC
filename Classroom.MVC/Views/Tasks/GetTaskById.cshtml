@@ -1,0 +1,50 @@
+﻿
+@model ClassRoomData.Entities.TaskEntity
+<style>
+body {
+  background-image: url('img_girl.jpg');
+}
+</style>
+<h1>Task</h1>
+<h3>Title : @Model.Title </h3>
+<h3>Description : @Model.Description </h3>
+<h3>StartDate : @Model.StartDate.ToString("dd.MM.yyyy") </h3>
+<h3>EndDate : @Model.EndDate.ToString("dd.MM.yyyy") </h3>
+<h3>Status : @Model.Status </h3>
+<h3>MaxBall : @Model.MaxBall </h3>
+<h3>CreatedDate : @Model.CreatedDate.ToString("g") </h3>
+
+<br>
+
+<h1>Comments</h1>
+@{
+    foreach (var comment in Model.Comments)
+    {
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">@comment.User.UserName</h4>
+                <p3 class="card-text">@comment.Comment  @comment.Created.ToString("yy-MMM-dd ddd")</p3>
+            </div>
+        </div>  
+    }
+}
+
+@*
+<form class="row g-3" style="width: 400px; margin: auto" asp-controller="Tasks" asp-action="AddComment" asp-route-taskId="@Model.Id" method="post">
+    <div>
+        <input name="Comment" class="form-control" placeholder="Leave Comment" type="text" />
+    </div>
+    <button class="form-control" type="submit">Add comment</button>
+</form>
+
+*@
+<div>
+    <form class="row g-3" style="width: 400px; margin: auto" asp-controller="Tasks" asp-action="AddComment" asp-route-taskId="@Model.Id" method="post">
+        <div class="input-group">
+            <input type="text" name="Comment" class="form-control" placeholder="Leave Comment Here " aria-label="Leave Comment Here" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">➤</button>
+            </div>
+        </div>
+    </form>
+</div>

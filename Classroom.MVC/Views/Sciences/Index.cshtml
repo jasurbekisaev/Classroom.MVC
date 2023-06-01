@@ -1,0 +1,50 @@
+﻿@using Classroom.MVC.Helpers;
+@model ClassRoomData.Entities.School
+@inject UserProvider userProvider
+
+<div style="display: flex; align-items: center; gap: 18rem">
+    <div>
+        <h1>Sciences </h1>
+        <a class="btn btn-primary" asp-area="" asp-action="CreateScience" asp-route-schoolId="@ViewBag.SchoolId">Create</a>
+    </div>
+    <div>
+        <form class="row g-3" style="display: flex; flex-direction: column" asp-action="Index" asp-route-schoolId="@ViewBag.SchoolId" method="get">
+            <div class="input-group">
+                <input type="hidden" name="SchoolId" value="@ViewBag.SchoolId">
+                <input type="text" name="Name" class="form-control" placeholder="Science's name" aria-label="Science's name" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Users</th>
+        <th scope="col">View</th>
+    </tr>
+    </thead>
+    <tbody>
+    @for (var i = 0; i < Model.Sciences?.Count; i++)
+    {
+        var science = Model.Sciences[i];
+
+        <tr>
+            <th scope="row">@(i + 1)</th>
+            <td>@science.Name</td>
+            <td>@science.Description</td>
+            <td>@science.UserSciences?.Count</td>
+            <td>
+                <a class="btn btn-primary" asp-action="GetScienceById" asp-route-scienceId="@science.Id" asp-route-schoolId="@Model.Id">View</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
